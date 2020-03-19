@@ -21,11 +21,11 @@ class Turn
   def winner
     current_type = type
     if current_type == :basic
-      return player1.name if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
-      return player2.name if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
+      return player1 if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
+      return player2 if player2.deck.rank_of_card_at(0) > player1.deck.rank_of_card_at(0)
     elsif current_type == :war
-      return player1.name if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
-      return player2.name if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
+      return player1 if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
+      return player2 if player2.deck.rank_of_card_at(2) > player1.deck.rank_of_card_at(2)
     elsif current_type == :mutually_assured_destruction
       return "No Winner"
     end
@@ -41,6 +41,7 @@ class Turn
     elsif current_type == :war
       @spoils_of_war << player1.deck.cards.last(3)
       @spoils_of_war << player2.deck.cards.last(3)
+      @spoils_of_war.flatten!
       player1.deck.cards.shift(3)
       player2.deck.cards.shift(3)
     elsif current_type == :mutually_assured_destruction
@@ -49,10 +50,14 @@ class Turn
     end
   end
 
-  def award_spoils
-    current_winner = winner
-    if current_winner == player1
-      player1.deck.cards << @spoils_of_war
+  def award_spoils(winner)
+    if winner == player1
+      player1.deck.cards.push(*@spoils_of_war)
+      @spoils_of_war = []
+    elsif winner == player2
+      player2.deck.cards.push(*@spoils_of_war)
+      @spoils_of_war = []
     end
   end
+
 end
