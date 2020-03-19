@@ -41,11 +41,18 @@ class Turn
     elsif current_type == :war
       @spoils_of_war << player1.deck.cards.last(3)
       @spoils_of_war << player2.deck.cards.last(3)
-      player1.deck.cards.last(3).pop
-      player2.deck.cards.last(3).pop
+      player1.deck.cards.shift(3)
+      player2.deck.cards.shift(3)
     elsif current_type == :mutually_assured_destruction
-      player1.deck.cards.last(3).pop
-      player2.deck.cards.last(3).pop
+      player1.deck.cards.shift(3)
+      player2.deck.cards.shift(3)
+    end
+  end
+
+  def award_spoils
+    current_winner = winner
+    if current_winner == player1
+      player1.deck.cards << @spoils_of_war
     end
   end
 end
