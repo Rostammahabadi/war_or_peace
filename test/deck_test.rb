@@ -139,9 +139,9 @@ class CardTest < Minitest::Test
     card4 = Card.new(:club, '5', 5)
     deck.add_card(card4)
 
-    result = ./≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥33.33
+    result = 33.33
     expected = deck.percent_high_ranking
 
     assert_equal result, expected
-  ≥.≥≥≥≥≥≥≥÷end
+  end
 end

@@ -1,7 +1,6 @@
 class Deck
 
-  attr_reader :counter, :high_ranking_cards
-  attr_accessor :cards
+  attr_reader :counter, :high_ranking_cards, :cards
   def initialize(cards)
     @cards = cards
     @counter = 0.0
@@ -23,11 +22,11 @@ class Deck
   end
 
   def percent_high_ranking
-    reset_counter
     high_ranking_cards
-    percent = @counter / @cards.count
-    percent = percent.round(4)
-    return percent * 100
+    percent = @counter / @cards.size
+    reset_counter
+    percentage = (percent.round(4))*100
+    return percentage
   end
 
   def remove_card

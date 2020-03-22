@@ -9,6 +9,7 @@ class Player
   end
 
   def has_lost?
+    @lost = @deck.cards.empty?
     @lost
   end
 
