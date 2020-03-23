@@ -91,8 +91,8 @@ class Game
         turn.pile_cards
         if player1.deck.cards.length > 0 && player2.deck.cards.length > 0
           winner = turn.winner
+          p "Turn #{x}: #{turn.type} #{turn.winner.name} won #{turn.spoils_of_war.length} cards"
           turn.award_spoils(winner)
-          p "Turn #{x}: #{turn.type} #{turn.winner.name}"
         else
           return "Game has ended"
         end
