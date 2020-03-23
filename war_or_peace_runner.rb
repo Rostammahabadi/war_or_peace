@@ -80,11 +80,11 @@ class Game
   end
 
   def create_player1
-    player1 = Player.new("June", Deck.new(create_cards[0..26]))
+    player1 = Player.new("Megan", Deck.new(create_cards[0..26]))
   end
 
   def create_player2
-    player2 = Player.new("August", Deck.new(create_cards[26..52]))
+    player2 = Player.new("Aurora", Deck.new(create_cards[26..52]))
   end
 
   def setup_turns
