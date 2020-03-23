@@ -9,10 +9,6 @@ Type 'GO' to start the game!
 ------------------------------------------------------------------"
 
 start_game = gets.chomp
-# if start_game != "GO"
-#   p "You did not start the game, type GO to begin"
-#   return
-# end
 
 class Game
   def initialize()
@@ -74,9 +70,6 @@ class Game
     all_cards << Card.new(:Club, "2", 2)
 
     all_cards.shuffle
-    # suits = %i[Spade Club Diamond Heart]
-    # ranks = [14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2]
-    # values = ["Ace", "King", "Queen", "Jack", "10", "9", "8", "7", "6", "5", "4", "3", "2"]
   end
 
   def create_player1
@@ -90,15 +83,19 @@ class Game
   def setup_turns
     player2 = create_player2
     player1 = create_player1
-    x = 0
+    x = 1
       while x != 1000000
         turn = Turn.new(player1, player2)
         turn.type
         turn.winner
         turn.pile_cards
-        winner = turn.winner
-        turn.award_spoils(winner)
-        p "Turn #{x}: #{turn.winner.name}"
+        if player1.deck.cards.length > 0 && player2.deck.cards.length > 0
+          winner = turn.winner
+          turn.award_spoils(winner)
+          p "Turn #{x}: #{turn.type} #{turn.winner.name}"
+        else
+          return "Game has ended"
+        end
         x+=1
       end
   end

@@ -37,10 +37,10 @@ class Turn
   def pile_cards
     current_type = type
     if current_type == :basic
-      @spoils_of_war << player1.deck.remove_card
-      @spoils_of_war << player2.deck.remove_card
-      player1.deck.cards.pop
-      player2.deck.cards.pop
+      @spoils_of_war << player1.deck.cards.first
+      @spoils_of_war << player2.deck.cards.first
+      player1.deck.cards.delete_at(0)
+      player2.deck.cards.delete_at(0)
     elsif current_type == :war
       @spoils_of_war << player1.deck.remove_three
       @spoils_of_war << player2.deck.remove_three
