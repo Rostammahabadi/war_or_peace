@@ -43,4 +43,8 @@ class Deck
     @counter = 0.0
   end
 
+  def remove_three
+    @cards.shift(3)
+  end
+
 end
